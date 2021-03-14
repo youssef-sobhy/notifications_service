@@ -1,0 +1,2 @@
+./notifications_api/.env
+./notifications_worker/.env

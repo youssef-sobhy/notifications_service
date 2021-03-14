@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  redis:
+    image: redis:5.0.7
+    container_name: notifications_redis
+    restart: on-failure
+    volumes:
+      - redis_data:/data
+
+  mongo:
+    image: mongo
+    container_name: notifications_mongo
+    restart: on-failure
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data
+
+  notifications_worker:
+    container_name: notifications_worker
+    restart: on-failure
+    build: ./notifications_worker/
+    depends_on:
+      - redis
+    env_file: .env
+
+  notifications_api:
+    container_name: notifications_api
+    restart: on-failure
+    build: ./notifications_api/
+    depends_on:
+      - redis
+      - mongo
+    ports:
+      - 3000:3000
+    env_file: .env
+
+volumes:
+  redis_data:
+  mongo_data:

@@ -1,0 +1,8 @@
+[submodule "notifications_api"]
+	path = notifications_api
+	url = git@github.com:youssef1337/notifications_api.git
+	branch = main
+[submodule "notifications_worker"]
+	path = notifications_worker
+	url = git@github.com:youssef1337/notifications_worker.git
+	branch = main
