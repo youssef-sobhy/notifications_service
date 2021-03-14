@@ -23,7 +23,7 @@ services:
     build: ./notifications_worker/
     depends_on:
       - redis
-    env_file: .env
+    env_file: ./env_files/env.worker
 
   notifications_api:
     container_name: notifications_api
@@ -34,7 +34,7 @@ services:
       - mongo
     ports:
       - 3000:3000
-    env_file: .env
+    env_file: ./env_files/env.api
 
 volumes:
   redis_data:
